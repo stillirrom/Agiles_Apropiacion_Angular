@@ -17,8 +17,8 @@ export class RegisterService {
   constructor(private httpClient: HttpClient, private router: Router) { }
 
   register(username: string, password: string, first_name: string, last_name: string, email: string): Observable<any> {
-    var obj = { username: username, password: password, first_name: first_name, last_name: last_name, email: email };
-    return of(this.httpClient.post(this.API_URL + '/gallery/addUser/', JSON.stringify(obj), httpOptions).subscribe(
+    var obj = { id: '', nombre_usuario: username, contraseña: password, nombre: first_name, apellido: last_name, correo_electronico: email };
+    return of(this.httpClient.post(this.API_URL + '/galeria/agregarUsuario/', JSON.stringify(obj), httpOptions).subscribe(
       (data: Response) => {
         if(data[0].fields.username === username) {
           this.router.navigate(['/gallery']);

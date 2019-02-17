@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { RestService } from '../rest.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import {GalleryService} from './gallery.service';
+import {Multimedia} from '../multimedia';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-gallery',
@@ -10,17 +12,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class GalleryComponent implements OnInit {
 
   url = 'https://uniandes.edu.co/sites/default/files/enterate-bm.jpg';
-  products: any = [];
-  constructor() { }
+  images: Observable<Multimedia[]>;
+  constructor(private galleryService: GalleryService) { }
 
   ngOnInit() {
-    this.getProducts();
+    this.getImages();
   }
-  getProducts() {
-      this.products = [];
-      /*this.rest.getProducts().subscribe((data: {}) => {
-        console.log(data);
-        this.products = data;
-      });*/
+  getImages() {
+      this.images = this.galleryService.getImages();
     }
 }

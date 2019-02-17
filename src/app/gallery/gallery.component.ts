@@ -1,24 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { RestService } from '../rest.service';
-import {GalleryService} from './gallery.service';
+import {GalleryService} from '../gallery.service';
 import {Multimedia} from '../multimedia';
-import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-gallery',
   templateUrl: './gallery.component.html',
-  styleUrls: ['./gallery.component.css']
+  styleUrls: ['./gallery.component.css'],
+  providers: [GalleryService]
 })
 export class GalleryComponent implements OnInit {
 
   url = 'https://uniandes.edu.co/sites/default/files/enterate-bm.jpg';
-  images: Observable<Multimedia[]>;
-  constructor(private galleryService: GalleryService) { }
+  images: Multimedia[];
+  constructor(public galleryService: GalleryService) { }
 
   ngOnInit() {
     this.getImages();
   }
   getImages() {
-      this.images = this.galleryService.getImages();
-    }
+      this.galleryService.getImages().subscribe(images => this.images = images);
+  }
 }

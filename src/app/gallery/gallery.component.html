@@ -1,6 +1,9 @@
 <div>
-
-  <img src="{{url}}" />
+Hi
+<ul>
+  <li *ngFor="let item of images">
+    {{item.titulo}}
+  </li>
+</ul>
 
 </div>
-<button (click)="updateProduct()">Update</button>

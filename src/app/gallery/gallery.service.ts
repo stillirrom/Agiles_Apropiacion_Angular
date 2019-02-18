@@ -20,6 +20,7 @@ export class GalleryService {
     this.httpClient.get(this.apiURL + '/galeria/obtenerImagen/').subscribe((data: Array<any>) => {
       data.forEach(dataItem => {
         const vEntity = new Multimedia();
+        vEntity.id = dataItem.pk;
         vEntity.titulo = dataItem.fields.titulo;
         vEntity.autor = dataItem.fields.autor;
         vEntity.fechacreacion = dataItem.fields.fecha_creacion;
@@ -39,6 +40,7 @@ export class GalleryService {
     this.httpClient.get(this.apiURL + '/galeria/obtenerAudio/').subscribe((data: Array<any>) => {
       data.forEach(dataItem => {
         const vEntity = new Multimedia();
+        vEntity.id = dataItem.pk;
         vEntity.titulo = dataItem.fields.titulo;
         vEntity.autor = dataItem.fields.autor;
         vEntity.fechacreacion = dataItem.fields.fecha_creacion;
@@ -58,6 +60,7 @@ export class GalleryService {
     this.httpClient.get(this.apiURL + '/galeria/obtenerVideo/').subscribe((data: Array<any>) => {
       data.forEach(dataItem => {
         const vEntity = new Multimedia();
+        vEntity.id = dataItem.pk;
         vEntity.titulo = dataItem.fields.titulo;
         vEntity.autor = dataItem.fields.autor;
         vEntity.fechacreacion = dataItem.fields.fecha_creacion;

@@ -21,7 +21,7 @@ export class RegisterService {
     return of(this.httpClient.post(this.API_URL + '/galeria/agregarUsuario/', JSON.stringify(obj), httpOptions).subscribe(
       (data: Response) => {
         if(data[0].fields.username === username) {
-          this.router.navigate(['/gallery']);
+          this.router.navigate([this.API_URL + '/galeria']);
         }
         else {
          console.log('Usuario o password incorrectos');

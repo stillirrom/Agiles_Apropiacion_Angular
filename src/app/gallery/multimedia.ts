@@ -1,6 +1,7 @@
 import {DatePipe} from '@angular/common';
 
 export class Multimedia {
+  id: string;
   titulo: string;
   autor: string;
   fechacreacion: DatePipe;

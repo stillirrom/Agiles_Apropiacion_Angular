@@ -8,7 +8,7 @@
       <b>{{ item.titulo }}</b>
       <span>Por: {{ item.autor }}</span>
       <span>{{ item.fechacreacion | date: 'yyyy/MM/dd' }}</span>
-      <!--<a href="{{ apiURL }}/galeria/det}}}}}{% url 'detalleGal' tipo='video' idbd=video.id %}">Ver detalle</a>-->
+      <a href="{{ apiURL }}/galeria/imagen/{{item.id}}">Ver detalle</a>
       <span><b>IMAGEN</b></span>
     </div>
     <div *ngFor="let item of lstAudio"
@@ -17,22 +17,24 @@
       <b>{{ item.titulo }}</b>
       <span>Por: {{ item.autor }}</span>
       <span>{{ item.fechacreacion | date: 'yyyy/MM/dd' }}</span>
+      <a href="{{ apiURL }}/galeria/audio/{{item.id}}">Ver detalle</a>
       <span><b>AUDIO</b></span>
     </div>
     <div *ngFor="let item of lstVideo"
          style="margin: 0.5rem; padding: 0.5rem; display: flex; flex-direction: column; border-style: groove;">
       <video height="150" controls>
-        <source src="{{ apiURL }}/archivos/{{ item.contenido }}">
+        <source src="{{ apiURL }}{{ item.contenido }}">
       </video>
       <b>{{ item.titulo }}</b>
       <span>Por: {{ item.autor }}</span>
       <span>{{ item.fechacreacion | date: 'yyyy/MM/dd' }}</span>
+      <a href="{{ apiURL }}/galeria/video/{{item.id}}">Ver detalle</a>
       <span><b>VIDEO</b></span>
     </div>
   </div>
   <ul>
     <li>
-      <a routerLink="/">Atrás</a>
+      <a href="{{ apiURL }}">Atrás</a>
     </li>
   </ul>
 </div>

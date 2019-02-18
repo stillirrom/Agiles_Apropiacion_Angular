@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {GalleryService} from '../gallery.service';
-import {Multimedia} from '../multimedia';
+import {Component, OnInit} from '@angular/core';
+import {GalleryService} from './gallery.service';
+import {Multimedia} from './multimedia';
 
 @Component({
   selector: 'app-gallery',
@@ -10,14 +10,29 @@ import {Multimedia} from '../multimedia';
 })
 export class GalleryComponent implements OnInit {
 
-  url = 'https://uniandes.edu.co/sites/default/files/enterate-bm.jpg';
-  images: Multimedia[];
-  constructor(public galleryService: GalleryService) { }
+  apiURL = 'http://localhost:8000';
+  lstImage: Multimedia[];
+  lstAudio: Multimedia[];
+  lstVideo: Multimedia[];
+
+  constructor(public galleryService: GalleryService) {
+  }
 
   ngOnInit() {
-    this.getImages();
+    this.getImage();
+    this.getAudio();
+    this.getVideo();
   }
-  getImages() {
-      this.galleryService.getImages().subscribe(images => this.images = images);
+
+  getImage() {
+    this.galleryService.getImage().subscribe(lstImage => this.lstImage = lstImage);
+  }
+
+  getAudio() {
+    this.galleryService.getAudio().subscribe(lstAudio => this.lstAudio = lstAudio);
+  }
+
+  getVideo() {
+    this.galleryService.getVideo().subscribe(lstVideo => this.lstVideo = lstVideo);
   }
 }

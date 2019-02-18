@@ -12,7 +12,7 @@ import {RegisterService} from '../register.service';
 export class RegisterComponent implements OnInit {
 
   public registerForm: FormGroup;
-  apiURL = 'http://localhost:8000';
+  apiURL = 'https://apropiacion.herokuapp.com';
 
   constructor(private route: ActivatedRoute, private registerService: RegisterService, private location: Location, private router: Router) {
   }

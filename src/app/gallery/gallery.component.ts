@@ -10,7 +10,7 @@ import {Multimedia} from './multimedia';
 })
 export class GalleryComponent implements OnInit {
 
-  apiURL = 'http://localhost:8000';
+  apiURL = 'https://apropiacion.herokuapp.com/';
   lstImage: Multimedia[];
   lstAudio: Multimedia[];
   lstVideo: Multimedia[];

@@ -11,7 +11,7 @@ import {RegisterService} from '../register.service';
 })
 export class RegisterComponent implements OnInit {
 
-  private registerForm: FormGroup;
+  public registerForm: FormGroup;
   apiURL = 'http://localhost:8000';
 
   constructor(private route: ActivatedRoute, private registerService: RegisterService, private location: Location, private router: Router) {

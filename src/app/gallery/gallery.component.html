@@ -1,8 +1,19 @@
 <div>
   <h3>Galería Multimedia</h3>
-
+  <div style="width: 40%; display: inline-block;">
+    Mostrar tipos: <br/>
+    <select id="selectorTiposRecurso" (change)="onChangeTipo($event.target.value)" style="width: 100%;">
+      <option *ngFor="let recurso of lstTiposRecurso" value="{{recurso.description}}">{{recurso.description}}</option>
+    </select>
+  </div>
+  <div style="width: 40%; display: inline-block">
+    Mostrar categorias: <br/>
+    <select id="selectorCategoria" style="width: 100%;">
+      <option *ngFor="let categoria of lstCategorias" value="{{categoria.description}}">{{categoria.description}}</option>
+    </select>
+  </div>
   <div style="display: flex; flex-wrap: wrap;">
-    <div *ngFor="let item of lstImage"
+    <div id="listadoImagen" *ngFor="let item of lstImage"
          style="margin: 0.5rem; padding: 0.5rem; display: flex; flex-direction: column; border-style: groove;">
       <img src="{{ apiURL }}/archivos/{{ item.contenido }}" alt="" height="150"/>
       <b>{{ item.titulo }}</b>
@@ -11,7 +22,7 @@
       <a href="{{ apiURL }}/galeria/imagen/{{item.id}}">Ver detalle</a>
       <span><b>IMAGEN</b></span>
     </div>
-    <div *ngFor="let item of lstAudio"
+    <div id="listadoAudio" *ngFor="let item of lstAudio"
          style="margin: 0.5rem; padding: 0.5rem; display: flex; flex-direction: column; border-style: groove;">
       <img src="{{ apiURL }}/archivos/recursos/music.svg" alt="" height="150"/>
       <b>{{ item.titulo }}</b>
@@ -20,7 +31,7 @@
       <a href="{{ apiURL }}/galeria/audio/{{item.id}}">Ver detalle</a>
       <span><b>AUDIO</b></span>
     </div>
-    <div *ngFor="let item of lstVideo"
+    <div id="listadoVideo" *ngFor="let item of lstVideo"
          style="margin: 0.5rem; padding: 0.5rem; display: flex; flex-direction: column; border-style: groove;">
       <video height="150" controls>
         <source src="{{ apiURL }}{{ item.contenido }}">

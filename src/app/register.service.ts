@@ -12,7 +12,7 @@ const httpOptions = {
 })
 export class RegisterService {
 
-  API_URL = 'https://apropiacion.herokuapp.com';
+  API_URL = 'http://localhost:8000';
 
   constructor(private httpClient: HttpClient, private router: Router) { }
 

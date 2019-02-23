@@ -11,3 +11,13 @@ export class Multimedia {
   usuario: string;
   contenido: string;
 }
+
+export class Categoria {
+  id: string;
+  description: string;
+}
+
+export class TipoRecurso {
+  id: string;
+  description: string;
+}

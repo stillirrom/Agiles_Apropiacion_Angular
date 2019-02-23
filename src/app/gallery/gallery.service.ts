@@ -1,5 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Multimedia} from './multimedia';
+import {Categoria} from './multimedia';
+import {TipoRecurso} from './multimedia';
 import {HttpClient} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 
@@ -7,12 +9,40 @@ import {Observable, of} from 'rxjs';
   providedIn: 'root'
 })
 export class GalleryService {
-  apiURL = 'https://apropiacion.herokuapp.com';
+  apiURL = 'http://localhost:8000';
   private vLstImagen: Array<Multimedia> = [];
   private vLstAudio: Array<Multimedia> = [];
   private vLstVideo: Array<Multimedia> = [];
+  private vLstTipoMultimedia: Array<TipoRecurso> = [];
+  private vLstCategoria: Array<Categoria> = [];
 
   constructor(private  httpClient: HttpClient) {
+  }
+
+  getCategorias(): Observable<Categoria[]> {
+    this.vLstCategoria = [];
+    this.httpClient.get(this.apiURL + '/galeria/obtenerCategorias').subscribe((data: Array<any>) => {
+      data.forEach(dataItem => {
+        let vEntity = new Categoria();
+        vEntity.id = dataItem.id;
+        vEntity.description = dataItem.description;
+        this.vLstCategoria.push(vEntity);
+      });
+    });
+    return of(this.vLstCategoria);
+  }
+
+  getTiposMultimedia(): Observable<TipoRecurso[]> {
+    this.vLstTipoMultimedia = [];
+    this.httpClient.get(this.apiURL + '/galeria/obtenerTipoMultimedia').subscribe((data: Array<any>) => {
+      data.forEach(dataItem => {
+        let vEntity = new TipoRecurso();
+        vEntity.id = dataItem.id;
+        vEntity.description = dataItem.description;
+        this.vLstTipoMultimedia.push(vEntity);
+      });
+    });
+    return of(this.vLstTipoMultimedia);
   }
 
   getImage(): Observable<Multimedia[]> {

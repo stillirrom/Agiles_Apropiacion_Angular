@@ -15,6 +15,12 @@ export class GalleryComponent implements OnInit {
   lstImage: Multimedia[];
   lstAudio: Multimedia[];
   lstVideo: Multimedia[];
+  lstImageBase: Multimedia[];
+  lstAudioBase: Multimedia[];
+  lstVideoBase: Multimedia[];
+  showImage = true;
+  showAudio = true;
+  showVideo = true;
 
   lstTiposRecurso: TipoRecurso[];
   lstCategorias: Categoria[];
@@ -39,25 +45,44 @@ export class GalleryComponent implements OnInit {
   }
 
   onChangeTipo(value) {
-    if(value === 'Todo')
-      this.getAll();
+    if(value === 'Todo') {
+      this.showImage = true;
+      this.showAudio = true;
+      this.showVideo = true;
+    }
     else if (value === 'Imagen')
     {
-      this.getImage();
-      this.lstVideo = [];
-      this.lstAudio = [];
+      this.showImage = true;
+      this.showAudio = false;
+      this.showVideo = false;
     }
     else if(value === 'Video')
     {
-      this.getVideo();
-      this.lstImage = [];
-      this.lstAudio = [];
+      this.showImage = false;
+      this.showAudio = false;
+      this.showVideo = true;
     }
     else if(value === 'Audio')
     {
-      this.getAudio();
-      this.lstImage = [];
-      this.lstVideo = [];
+      this.showImage = false;
+      this.showAudio = true;
+      this.showVideo = false;
+    }
+  }
+
+  onChangeCategoria(value) {
+    console.log(this.lstImageBase);
+    console.log(this.lstAudioBase);
+    console.log(this.lstVideoBase);
+    if(value === 'todo') {
+      this.lstImage = this.lstImageBase;
+      this.lstAudio = this.lstAudioBase;
+      this.lstVideo = this.lstVideoBase;
+    }
+    else {
+      this.lstImage = this.lstImageBase.filter(image => image.categoria === value);
+      this.lstAudio = this.lstAudioBase.filter(audio => audio.categoria === value);
+      this.lstVideo = this.lstVideoBase.filter(video => video.categoria === value);
     }
   }
 
@@ -68,14 +93,14 @@ export class GalleryComponent implements OnInit {
   }
 
   getImage() {
-    this.galleryService.getImage().subscribe(lstImage => this.lstImage = lstImage);
+    this.galleryService.getImage().subscribe(lstImage => {this.lstImage = lstImage; this.lstImageBase = lstImage;});
   }
 
   getAudio() {
-    this.galleryService.getAudio().subscribe(lstAudio => this.lstAudio = lstAudio);
+    this.galleryService.getAudio().subscribe(lstAudio => {this.lstAudio = lstAudio; this.lstAudioBase = lstAudio;});
   }
 
   getVideo() {
-    this.galleryService.getVideo().subscribe(lstVideo => this.lstVideo = lstVideo);
+    this.galleryService.getVideo().subscribe(lstVideo => {this.lstVideo = lstVideo; this.lstVideoBase = lstVideo;});
   }
 }

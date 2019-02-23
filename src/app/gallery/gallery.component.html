@@ -8,40 +8,46 @@
   </div>
   <div style="width: 40%; display: inline-block">
     Mostrar categorias: <br/>
-    <select id="selectorCategoria" style="width: 100%;">
+    <select id="selectorCategoria" (change)="onChangeCategoria($event.target.value)" style="width: 100%;">
       <option *ngFor="let categoria of lstCategorias" value="{{categoria.description}}">{{categoria.description}}</option>
     </select>
   </div>
   <div style="display: flex; flex-wrap: wrap;">
-    <div id="listadoImagen" *ngFor="let item of lstImage"
-         style="margin: 0.5rem; padding: 0.5rem; display: flex; flex-direction: column; border-style: groove;">
-      <img src="{{ apiURL }}/archivos/{{ item.contenido }}" alt="" height="150"/>
-      <b>{{ item.titulo }}</b>
-      <span>Por: {{ item.autor }}</span>
-      <span>{{ item.fechacreacion | date: 'yyyy/MM/dd' }}</span>
-      <a href="{{ apiURL }}/galeria/imagen/{{item.id}}">Ver detalle</a>
-      <span><b>IMAGEN</b></span>
-    </div>
-    <div id="listadoAudio" *ngFor="let item of lstAudio"
-         style="margin: 0.5rem; padding: 0.5rem; display: flex; flex-direction: column; border-style: groove;">
-      <img src="{{ apiURL }}/archivos/recursos/music.svg" alt="" height="150"/>
-      <b>{{ item.titulo }}</b>
-      <span>Por: {{ item.autor }}</span>
-      <span>{{ item.fechacreacion | date: 'yyyy/MM/dd' }}</span>
-      <a href="{{ apiURL }}/galeria/audio/{{item.id}}">Ver detalle</a>
-      <span><b>AUDIO</b></span>
-    </div>
-    <div id="listadoVideo" *ngFor="let item of lstVideo"
-         style="margin: 0.5rem; padding: 0.5rem; display: flex; flex-direction: column; border-style: groove;">
-      <video height="150" controls>
-        <source src="{{ apiURL }}{{ item.contenido }}">
-      </video>
-      <b>{{ item.titulo }}</b>
-      <span>Por: {{ item.autor }}</span>
-      <span>{{ item.fechacreacion | date: 'yyyy/MM/dd' }}</span>
-      <a href="{{ apiURL }}/galeria/video/{{item.id}}">Ver detalle</a>
-      <span><b>VIDEO</b></span>
-    </div>
+    <ng-container  *ngIf="showImage">
+      <div id="listadoImagen" *ngFor="let item of lstImage"
+           style="margin: 0.5rem; padding: 0.5rem; display: flex; flex-direction: column; border-style: groove;">
+        <img src="{{ apiURL }}{{ item.contenido }}" alt="" height="150"/>
+        <b>{{ item.titulo }}</b>
+        <span>Por: {{ item.autor }}</span>
+        <span>{{ item.fechacreacion | date: 'yyyy/MM/dd' }}</span>
+        <a href="{{ apiURL }}/galeria/imagen/{{item.id}}">Ver detalle</a>
+        <span><b>IMAGEN</b></span>
+      </div>
+    </ng-container>
+    <ng-container  *ngIf="showAudio">
+      <div id="listadoAudio" *ngFor="let item of lstAudio"
+           style="margin: 0.5rem; padding: 0.5rem; display: flex; flex-direction: column; border-style: groove;">
+        <img src="{{ apiURL }}/archivos/recursos/music.svg" alt="" height="150"/>
+        <b>{{ item.titulo }}</b>
+        <span>Por: {{ item.autor }}</span>
+        <span>{{ item.fechacreacion | date: 'yyyy/MM/dd' }}</span>
+        <a href="{{ apiURL }}/galeria/audio/{{item.id}}">Ver detalle</a>
+        <span><b>AUDIO</b></span>
+      </div>
+    </ng-container>
+    <ng-container  *ngIf="showVideo">
+      <div id="listadoVideo" *ngFor="let item of lstVideo"
+           style="margin: 0.5rem; padding: 0.5rem; display: flex; flex-direction: column; border-style: groove;">
+        <video height="150" controls>
+          <source src="{{ apiURL }}{{ item.contenido }}">
+        </video>
+        <b>{{ item.titulo }}</b>
+        <span>Por: {{ item.autor }}</span>
+        <span>{{ item.fechacreacion | date: 'yyyy/MM/dd' }}</span>
+        <a href="{{ apiURL }}/galeria/video/{{item.id}}">Ver detalle</a>
+        <span><b>VIDEO</b></span>
+      </div>
+    </ng-container>
   </div>
   <ul>
     <li>

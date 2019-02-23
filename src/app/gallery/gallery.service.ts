@@ -15,6 +15,9 @@ export class GalleryService {
   private vLstVideo: Array<Multimedia> = [];
   private vLstTipoMultimedia: Array<TipoRecurso> = [];
   private vLstCategoria: Array<Categoria> = [];
+  showImage = true;
+  showAudio = true;
+  showVideo = true;
 
   constructor(private  httpClient: HttpClient) {
   }
@@ -26,6 +29,7 @@ export class GalleryService {
         let vEntity = new Categoria();
         vEntity.id = dataItem.id;
         vEntity.description = dataItem.description;
+        vEntity.categoriaid = dataItem.categoriaid;
         this.vLstCategoria.push(vEntity);
       });
     });

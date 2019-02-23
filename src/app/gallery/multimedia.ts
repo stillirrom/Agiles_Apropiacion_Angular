@@ -15,6 +15,7 @@ export class Multimedia {
 export class Categoria {
   id: string;
   description: string;
+  categoriaid: string;
 }
 
 export class TipoRecurso {

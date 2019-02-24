@@ -9,7 +9,7 @@ import {Observable, of} from 'rxjs';
   providedIn: 'root'
 })
 export class GalleryService {
-  apiURL = 'http://localhost:8000';
+  apiURL = 'https://apropiacion.herokuapp.com';
   private vLstImagen: Array<Multimedia> = [];
   private vLstAudio: Array<Multimedia> = [];
   private vLstVideo: Array<Multimedia> = [];

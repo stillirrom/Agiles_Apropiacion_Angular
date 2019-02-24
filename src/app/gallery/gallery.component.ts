@@ -11,7 +11,7 @@ import {Observable} from 'rxjs';
 })
 export class GalleryComponent implements OnInit {
 
-  apiURL = 'http://localhost:8000';
+  apiURL = 'https://apropiacion.herokuapp.com';
   lstImage: Multimedia[];
   lstAudio: Multimedia[];
   lstVideo: Multimedia[];
